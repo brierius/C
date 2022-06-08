@@ -1,6 +1,6 @@
 /*
 Estrutura While
-while (condição) <== só serão executadas se for true
+while (condição) <== só serão executadas se for true, ou seja pode nem ser executada
 {
     <instruções>;
 }
