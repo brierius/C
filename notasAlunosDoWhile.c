@@ -5,56 +5,49 @@
 4 - Qual é o resultado esperado: a media dos alunos e quantos foram aprovados e não aprovados
 5 - Qual é a sequência de passos necessários para este fim: usar a estrutura while, 
         solicitar codigo aluno, notas, disciplinas e se a media ficou acima de 6 = aprovado, menor 6 = reprovado. 
-Passos:
-
-Receba a quantidade de notas. qNotas.
-Receba o codigo do aluno. codAluno
-    Receba as notas. notas.
-    Ache a media. media = soma/qNotas.
-        Se media >= 6.
-        aprovados++
-        Senão
-        Reprovados++
-    codAluno = 0?
-    Se sim encerre o programa
-        Apresente o total de aprovados e reprovados. 
-    Se não repita a sequencia
 */
 
 #include <stdio.h>
 int main ()
 {
-    int qNotas, codAluno, aprovados, reprovados, i;
-    float notas, soma, media;
+    int codAluno, i, numAprov, numReprov, numNotas;
+    float nota, soma, media;
 
-    aprovados =0;
-    reprovados = 0;
-
-    printf("Digite a quantidade de notas:\n ");
-    scanf("%f", &qNotas);
-
-    printf("Digite o codigo aluno: \n");
-    scanf("%d", &codAluno);
+    numAprov = 0;
+    numReprov = 0;
+    printf("Informe o numero de notas da disciplina\n");
+    scanf("%d", &numNotas);
 
     do
-    {   
+    {
+        printf("Informe o codigo do aluno\n");
+        scanf("%d", &codAluno);
         soma = 0;
-        for (i = 1; i <= qNotas; i++)
+        if (codAluno != 0)
         {
-            printf("Digite a nota: \n");
-            scanf("%f", &notas);
-            soma = soma+notas;
+            for ( i = 1; i<= numNotas; i++)
+            {
+            printf("Digite a nota\n");
+            scanf("%d", &nota);
+            soma = soma+nota;
+            }
+            
+            media = soma/numNotas;
+            printf("Media %.2f\n", media);
+            
+            if (media >= 6 )
+                numAprov++;  
+            else
+                numReprov++;
         }
-        media = soma/qNotas;
-        if (media >= 6)
-            aprovados++;
-        else
-            reprovados++;
-        printf("Digite o codigo de um aluno. 0 Encerra o programa \n");
-        scanf("%d", codAluno);
-    } while (codAluno != 0);
-        printf("Total de provados: %d", aprovados);
-        printf("Total de reprovados: %d", reprovados);
+            
+         
+       } while (codAluno != 0);
+       printf("O numero de alunos aprovados foi: %d\n", numAprov);
+       printf("O numero de alunos reprovados foi: %d\n", numReprov);
+       return(0);
     
-    return(0);
+    {
+
+    }
 }
