@@ -40,7 +40,7 @@ int main()
     printf("Digite o codigo aluno: \n");
     scanf("%d", &codAluno);
 
-    while (codAluno = !0)
+    while (codAluno != 0)
     {
         soma = 0;
         for (i = 1; i <= qNotas; i++)
@@ -55,12 +55,12 @@ int main()
         else
             reprovados++;
         printf("Digite o codigo de um aluno. 0 Encerra o programa \n");
-        scanf("%d", codAluno);
+        scanf("%d", &codAluno);
     
     }
 
-    printf("Total de provados: %d", aprovados);
-    printf("Total de reprovados: %d", reprovados);
+    printf("Total de provados: %d\n", aprovados);
+    printf("Total de reprovados: %d\n", reprovados);
 
     return (0);
 }
