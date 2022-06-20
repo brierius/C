@@ -20,76 +20,128 @@
                     criar um vetor de ordenação
             5 - Sair do programa
 */
-
 #include <stdio.h>
 #include <stdlib.h>
-
-#define TAM 20
-
-struct livro 
+#define TAM 2
+struct livro
 {
     int codigo;
     char titulo[50];
-    char autor[50];
-    char area[50];
+    char autor[30];
+    char area[30];
     int ano;
-    char editora[50];
+    char editora[30];
 };
-
-int main ()
+int main()
 {
     struct livro ficha[TAM];
     struct livro troca;
-    int i,j,op, busca, acha;
+    int busca, i, j, acha, op;
 
-    op=0;
-
-    while (op != 5)
+    op = 0;
+    while (op !=5)
     {
-    printf("Escolha uma das opcoes abaixo: \n 1 - Cadastrar Livro\n 2 - Mostrar Informacoes dos livros\n 
-    3 - Pesquisar livros por codigos\n 4 - Ordenar Livros por Ano\n 5 - Sair \n");
+    printf("1 - Cadastrar os livros\n");
+    printf("2 - Imprimir os livros cadastrados\n");
+    printf("3 - Pesquisar livros por codigo\n");
+    printf("4 - Ordenar os livros por ano\n");
+    printf("5 - Sair\n");
+    printf("Digite a opcao desejada: ");
     scanf("%d", &op);
-    ffflush(stdin);
+    fflush(stdin);
+    if (op == 1)
+    {
+    system("cls");
+    for (i=0; i<TAM; i++)
+    {
+    printf("Digite o codigo do livro da posicao %d:", i+1 );
+    scanf("%d", &ficha[i].codigo);
+    fflush(stdin);
+    printf("Digite o titulo do livro: ");
+    scanf("%50[^\n]s", &ficha[i].titulo);
+    fflush(stdin);
+    printf("Digite o nome do autor: ");
+    scanf("%30[^\n]s", &ficha[i].autor);
+    fflush(stdin);
+    printf("Digite a area do livro: ");
+    scanf("%30[^\n]s", &ficha[i].area);
+    fflush(stdin);
+    printf("Digite o ano: ");
+    scanf("%d", &ficha[i].ano);
+    fflush(stdin);
+    printf("Digite o nome da editora: ");
+    scanf("%30[^\n]s", &ficha[i].editora);
+    fflush(stdin);
     }
-    
-    if (op == 1) 
-        {
-        system("cls");
-        for(i=0; i<TAM; i++)
-        {
-        printf("Digite o codigo do livro %d", i+1);
-        scanf("%d", &ficha[i].codigo);
-        ffflush(stdin);
-        printf("Digite o titulo do livro");
-        scanf("%50[^\n]s", &ficha[i].titulo);
-        ffflush(stdin);
-        printf("Digite o autor do livro");
-        scanf("%30[^\n]s", &ficha[i].autor);
-        ffflush(stdin);
-        printf("Digite o area do livro");
-        scanf("%30[^\ns]", &ficha[i].area);
-        ffflush(stdin);
-        printf("Digite o ano do livro");
-        scanf("%d", &ficha[i].ano);
-        ffflush(stdin);
-        printf("Digite o editora do livro");
-        scanf("%30[^\ns]", &ficha[i].editora);
-        ffflush(stdin);
-        }   
     }
         else
         {
-            if (op==2)
+        if (op == 2)
+        {
+        system("cls");
+        for (i=0; i<TAM; i++)
+        {
+        printf("\nCODIGO: %d\n", ficha[i].codigo );
+        printf("TITULO: %s\n", ficha[i].titulo);
+        printf("AUTOR: %s\n", ficha[i].autor);
+        printf("AREA: %s\n", ficha[i].area);
+        printf("ANO: %d\n", ficha[i].ano);
+        printf("EDITORA: %s\n\n", ficha[i].editora);
+        }
+    }
+            else
             {
-                system("cls");
-                for (i=0; i<TAM; i++)
-                {
-                    printf("\nCodigo: %d\n, ficha[i].codigo");
-                    printf("\nTitulo: %d\n, ");
+            if (op == 3)
+            {
+            system("cls");
+            printf("Digite o codigo que deseja buscar: ");
+            scanf ("%d", &busca);
+            i = 0;
+            acha = 0;
+            while ((i < TAM) && (acha == 0))
+            {
+                if (ficha[i].codigo == busca)
+                acha = 1;
+                else
+                i++;
+                }
+                    if (acha == 1)
+                    {
+                    printf("\nCODIGO: %d\n", ficha[i].codigo );
+                    printf("TÍTULO: %s\n", ficha[i].titulo);
+                    printf("AUTOR: %s\n", ficha[i].autor);
+                    printf("AREA: %s\n", ficha[i].area);
+                    printf("ANO: %d\n", ficha[i].ano);
+                    printf("EDITORA: %s\n\n", ficha[i].editora);
+                    }
+                        else
+                        printf("\n Registro nao encontrado");
+                        }
+                            else
+                            {
+                            if (op ==4)
+                            {
+                            system("cls");
+                            for (i=0;i<TAM-1;i++)
+                            {
+                            for (j=i+1;j<TAM;j++)
+                            {
+                            if (ficha[i].ano > ficha[j].ano)
+                            {
+                            troca = ficha[i];
+                            ficha[i] = ficha[j];
+                            ficha[j] = troca;
+                            }
+                            }
+                            }
+                            for (i=0;i<TAM;i++)
+                            {
+                            printf("\n CoDIGO: %d, TITULO: %s, ANO: %d\n\n", ficha[i].codigo, ficha[i].titulo, ficha[i].ano);
+                        }
+                    }
                 }
             }
-        }
-  
-
-    return(0);
+        }   
+    }
+return (0);
 }
