@@ -1,5 +1,12 @@
 //Bibliotecas
 #include <stdio.h>
+#include <stdlib.h>
+
+//Constante
+#define tamanho 100 // tamanho do vetor
+#define E 0
+#define D 1
+#define R -1
 
 //Estrutura
 struct str_no
@@ -8,15 +15,19 @@ struct str_no
     int esquerda; // aponta para o filho esquerdo
     int direita; // aponta para o filho direito
     int pai; // aponta para o pai
-}
+};
 
-//Constante
-#define tamanho 100 // tamanho do vetor
 
 //Variaveis
 struct str_no arvore[tamanho]; // cria um vetor com tamanho igual a constante
-int indice=0; // cria um indice para acesso do vetor
+int lado, indice=0; // cria um indice para acesso do vetor
+int opt =-1;
+char pai, no;
 
+// prototipação
+void arvore_insere (int pai, char dado, int lado);
+int arvore_procura(char dado);
+void menu_mostrar(void);
 /* Antes de inserir um no na arvore eu preciso saber que é o pai e se ele é um filho a direita ou a esquerda, 
 É filho?
     Se sim
@@ -46,7 +57,7 @@ int arvore_procura(char dado)
     }
 }
 
-int arvore_insere (int pai, char dado, int lado)
+int arvore_insere (int pai, char dado, int lado){
     switch (lado)
     {
     case E:
@@ -54,7 +65,7 @@ int arvore_insere (int pai, char dado, int lado)
        arvore[indice].dado = dado;
        arvore[indice].pai = pai;
        arvore[indice].esquerda = -1;
-       arvore[indice].direira = -1;
+       arvore[indice].direita = -1;
        indice++;
     break;
 
@@ -64,8 +75,8 @@ int arvore_insere (int pai, char dado, int lado)
         arvore[indice].pai = pai;
         arvore[indice].esquerda = -1;
         arvore[indice].direita = -1;
+        indice++;
     break;
 
-    default
-        break;
     }
+}
